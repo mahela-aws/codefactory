@@ -107,7 +107,7 @@ echo ""
 echo "Compressing your Repository..."
 echo ""
 FILE_NAME=$REPO_NAME-$BRANCH.tar.gz
-COMMAND="tar civzf $FILE_NAME *"
+COMMAND="tar cvzf $FILE_NAME *"
 echo "Executing Tar Command : $COMMAND"
 
 $COMMAND 2>/dev/null
@@ -141,7 +141,6 @@ aws s3 cp $FILE_NAME s3://$S3_BUCKET_NAME
 	
 	if [ $? -eq 0 ]; then
 
-	echo "s3 upload return :"$?
 	echo ""
 	echo "Completed uploading to S3 bucket..."
 	echo ""
