@@ -79,9 +79,22 @@ pull_changes()
 echo ""
 echo "Pulling Changes from GIT repository..."
 echo ""
+
 git pull
-echo ""
-echo "Completed Pulling Changes..."
+
+	if [ $? -eq 0 ]; then
+	
+	echo ""
+	echo "Completed Pulling Changes..."	
+
+	else
+	
+	echo ""	
+	echo "Failed to Pull Changes..."
+	echo ""
+	exit 1	
+
+	fi
 
 }
 
@@ -94,12 +107,25 @@ echo ""
 echo "Compressing your Repository..."
 echo ""
 FILE_NAME=$REPO_NAME-$BRANCH.tar.gz
-COMMAND="tar cvzf $FILE_NAME *"
+COMMAND="tar civzf $FILE_NAME *"
 echo "Executing Tar Command : $COMMAND"
+
 $COMMAND 2>/dev/null
-echo ""
-echo "Completed Compression..."
-echo ""
+      
+	if [ $? -eq 0 ]; then   
+
+	echo ""
+	echo "Completed Compression..."
+	echo ""
+
+	else
+	
+	echo ""
+	echo "Failed to Compress repo..."
+	echo ""
+	exit 1
+
+	fi
 
 }
 
@@ -110,10 +136,24 @@ upload_to_s3()
 
 echo "Uploading your repository to S3 bucket : $S3_BUCKET_NAME "
 echo ""
+
 aws s3 cp $FILE_NAME s3://$S3_BUCKET_NAME
-echo ""
-echo "Completed uploading to S3 bucket..."
-echo ""
+	
+	if [ $? -eq 0 ]; then
+
+	echo "s3 upload return :"$?
+	echo ""
+	echo "Completed uploading to S3 bucket..."
+	echo ""
+
+	else
+	
+	echo ""
+	echo "Failed to upload to S3 bucket..."
+	echo ""
+	exit 1
+
+	fi
 
 }
 
