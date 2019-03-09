@@ -21,9 +21,10 @@ get_parameters()
 echo ""
 read -p "Enter your S3 Bucket Name : " S3_BUCKET_NAME
 echo ""
-read -p "Enter your Access Key : " AWS_ACCESS_KEY
+read -s -p "Enter your Access Key : " AWS_ACCESS_KEY
 echo ""
-read -p "Enter your Secret Access Key : " AWS_SECRET_ACCESS_KEY
+echo ""
+read -s -p "Enter your Secret Access Key : " AWS_SECRET_ACCESS_KEY
 echo ""
 }
 
@@ -32,14 +33,15 @@ echo ""
 export_env_variables()
 {
 
+echo ""
 echo "Exporting Credentials..."
 export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY
 export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
-echo ""
-echo "AWS_ACCESS_KEY_ID : $AWS_ACCESS_KEY_ID"
-echo ""
-echo "AWS_SECRET_ACCESS_KEY : $AWS_SECRET_ACCESS_KEY"
-echo ""
+#echo ""
+#echo "AWS_ACCESS_KEY_ID : $AWS_ACCESS_KEY_ID"
+#echo ""
+#echo "AWS_SECRET_ACCESS_KEY : $AWS_SECRET_ACCESS_KEY"
+#echo ""
 
 }
 
