@@ -106,7 +106,8 @@ compress_repo()
 echo ""
 echo "Compressing your Repository..."
 echo ""
-FILE_NAME=$REPO_NAME-$BRANCH.tar.gz
+HASH=$(git rev-parse --short HEAD)
+FILE_NAME=$REPO_NAME-$BRANCH-$HASH.tar.gz
 COMMAND="tar cvzf $FILE_NAME *"
 echo "Executing Tar Command : $COMMAND"
 
@@ -156,6 +157,15 @@ aws s3 cp $FILE_NAME s3://$S3_BUCKET_NAME
 
 }
 
+create_json()
+{
+
+#rm artifact.json
+touch artifact.json
+CURRENT_DATE=$(date)
+echo " \"created_at\": $CURRENT_DATE} " > artifact.json
+
+}
 
 #Function calls
 
@@ -166,5 +176,5 @@ get_branch
 pull_changes
 compress_repo
 upload_to_s3
-
+create_json
 
