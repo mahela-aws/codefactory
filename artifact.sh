@@ -53,7 +53,8 @@ get_repo_name()
 echo ""
 echo "Getting Repo Name..."
 echo ""
-REPO_NAME=${PWD##*/}
+#REPO_NAME=${PWD##*/}
+REPO_NAME=$(git remote get-url origin | sed 's%^.*/\([^/]*\)\.git$%\1%g')
 echo "$REPO_NAME"
 
 }
