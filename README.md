@@ -1,4 +1,4 @@
-# codefactory
+# CodeFactory
 CodeFactory repo contains bash script called artifact.sh which facilitate automation of local git repository uploads to Amazon S3 buckets.
 All configuration files and conf folders are created for testing purposes. None of them are releavant to the bash script file.
 
