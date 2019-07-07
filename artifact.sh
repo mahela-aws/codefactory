@@ -84,16 +84,16 @@ echo ""
 git pull
 
 	if [ $? -eq 0 ]; then
-	
+
 	echo ""
-	echo "Completed Pulling Changes..."	
+	echo "Completed Pulling Changes..."
 
 	else
-	
-	echo ""	
+
+	echo ""
 	echo "Failed to Pull Changes..."
 	echo ""
-	exit 1	
+	exit 1
 
 	fi
 
@@ -113,15 +113,15 @@ COMMAND="tar cvzf $FILE_NAME *"
 echo "Executing Tar Command : $COMMAND"
 
 $COMMAND 2>/dev/null
-      
-	if [ $? -eq 0 ]; then   
+
+	if [ $? -eq 0 ]; then
 
 	echo ""
 	echo "Completed Compression..."
 	echo ""
 
 	else
-	
+
 	echo ""
 	echo "Failed to Compress repo..."
 	echo ""
@@ -140,7 +140,7 @@ echo "Uploading your repository to S3 bucket : $S3_BUCKET_NAME "
 echo ""
 
 aws s3 cp $FILE_NAME s3://$S3_BUCKET_NAME
-	
+
 	if [ $? -eq 0 ]; then
 
 	echo ""
@@ -148,7 +148,7 @@ aws s3 cp $FILE_NAME s3://$S3_BUCKET_NAME
 	echo ""
 
 	else
-	
+
 	echo ""
 	echo "Failed to upload to S3 bucket..."
 	echo ""
@@ -178,4 +178,3 @@ pull_changes
 compress_repo
 upload_to_s3
 create_json
-
